@@ -9,12 +9,20 @@ from sqlalchemy import create_engine
 # readexcel.to_sql('person',con=engine,index=False,if_exists='append')
 
 def read_excel():
-    read = pd.read_excel('D:/MyData/人群.xlsx', header=None, names=['distinct_id', 'base_time', 'ext'])
+    read = pd.read_excel('D:/MyData/星火数据.xlsx', header=None, names=['spma', 'spmb', 'spmc', 'spmd', 'begin_time',
+                                                                    'end_time', 'click_times', 'exposure_times',
+                                                                    'source_url',
+                                                                    'click_users', 'exposure_users', 'static_time_th',
+                                                                    'click_times_th',
+                                                                    'exposure_times_th', 'click_users_th',
+                                                                    'exposure_users_th',
+                                                                    'ad_idea_id', 'ad_unit_id'])
     return read
 
 
 if __name__ == '__main__':
     # 连接数据库
-    engine = create_engine('mysql+pymysql://userprofile:userprofile@172.31.24.50:3306/userprofiledb', encoding='utf8')
+    engine = create_engine('mysql+pymysql://bmpointcore:bmpointcore@172.31.24.50:3306/bmpointcore', encoding='utf8')
     readData = read_excel()
-    readData.to_sql('up_user_group_020', con=engine, index=False, if_exists='append')
+    readData.to_sql('ad_throw_data_statis', con=engine, index=False, if_exists='append')
+    print('插入完成')
