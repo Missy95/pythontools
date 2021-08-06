@@ -22,7 +22,7 @@ if __name__ == '__main__':
     try:
         readData = read_excel()
         readData.to_sql(table_name, con=engine, index=False, if_exists='append')
-        print('插入数据成功！')
+        print('插入数据成功！!')
     except Exception as e:
         print(e)
 
